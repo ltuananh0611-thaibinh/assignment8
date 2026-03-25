@@ -1,0 +1,36 @@
+import random
+
+class Car:
+    def __init__(self, name):
+        self.name = name
+        self.speed = 0
+        self.distance = 0
+
+    def drive(self):
+        change = random.randint(-10, 15)
+        self.speed = max(0, self.speed + change)
+        self.distance += self.speed
+
+
+class Race:
+    def __init__(self, name, distance, cars):
+        self.name = name
+        self.distance = distance
+        self.cars = cars
+
+    def hour_passes(self):
+        for car in self.cars:
+            car.drive()
+
+    def print_status(self):
+        print("\nRace status:")
+        print("Name\tSpeed\tDistance")
+        for car in self.cars:
+            print(f"{car.name}\t{car.speed}\t{car.distance}")
+
+    def race_finished(self):
+        for car in self.cars:
+            if car.distance >= self.distance:
+                return True
+        return False
+    
